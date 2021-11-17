@@ -119,13 +119,13 @@ class NavigationTest {
         launchActivity<MainActivity>()
         //first
         selFragment(1)
-        clickToFragment(1)
+        clickToFragment(2)
         selFragment(2)
-        ViewActions.pressBack()
+        Espresso.onView(ViewMatchers.isRoot()).perform(ViewActions.pressBack())
         selFragment(1)
         openAbout()
         selFragment(4)
-        ViewActions.pressBack()
+        Espresso.onView(ViewMatchers.isRoot()).perform(ViewActions.pressBack())
         selFragment(1)
 
         //second
@@ -137,11 +137,11 @@ class NavigationTest {
         selFragment(2)
         clickToFragment(3)
         selFragment(3)
-        ViewActions.pressBack()
+        Espresso.onView(ViewMatchers.isRoot()).perform(ViewActions.pressBack())
         selFragment(2)
         openAbout()
         selFragment(4)
-        ViewActions.pressBack()
+        Espresso.onView(ViewMatchers.isRoot()).perform(ViewActions.pressBack())
         selFragment(2)
 
         //third
@@ -155,7 +155,7 @@ class NavigationTest {
         selFragment(3)
         openAbout()
         selFragment(4)
-        ViewActions.pressBack()
+        Espresso.onView(ViewMatchers.isRoot()).perform(ViewActions.pressBack())
         selFragment(3)
     }
 
@@ -172,22 +172,22 @@ class NavigationTest {
         clickToFragment(3)
         openAbout()
         selFragment(4)
-        ViewActions.pressBack()
+        Espresso.onView(ViewMatchers.isRoot()).perform(ViewActions.pressBack())
         selFragment(3)
-        ViewActions.pressBack()
+        Espresso.onView(ViewMatchers.isRoot()).perform(ViewActions.pressBack())
         selFragment(2)
         openAbout()
         selFragment(4)
-        ViewActions.pressBack()
+        Espresso.onView(ViewMatchers.isRoot()).perform(ViewActions.pressBack())
         selFragment(2)
-        ViewActions.pressBack()
+        Espresso.onView(ViewMatchers.isRoot()).perform(ViewActions.pressBack())
         selFragment(1)
         openAbout()
         selFragment(4)
-        ViewActions.pressBack()
+        Espresso.onView(ViewMatchers.isRoot()).perform(ViewActions.pressBack())
         selFragment(1)
         try {
-            ViewActions.pressBack()
+            Espresso.onView(ViewMatchers.isRoot()).perform(ViewActions.pressBack())
             assert(value = false)
         } catch (NoActivityResumedException: Exception) {
             assert(value = true)
@@ -248,7 +248,6 @@ class NavigationTest {
 
     @Test
     fun rotateScreen() {
-        launchActivity<MainActivity>()
         checkOrientationOnFragment(1)
         clickToFragment(2)
         checkOrientationOnFragment(2)
@@ -256,11 +255,12 @@ class NavigationTest {
         checkOrientationOnFragment(3)
         openAbout()
         checkOrientationOnFragment(4)
+        Espresso.onView(ViewMatchers.isRoot()).perform(ViewActions.pressBack())
         clickToFragment(1)
         checkOrientationOnFragment(1)
         openAbout()
         checkOrientationOnFragment(4)
-        ViewActions.pressBack()
+        Espresso.onView(ViewMatchers.isRoot()).perform(ViewActions.pressBack())
         checkOrientationOnFragment(1)
     }
 }
